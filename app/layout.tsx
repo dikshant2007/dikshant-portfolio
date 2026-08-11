@@ -20,10 +20,70 @@ const instrumentSerif = Instrument_Serif({
   variable: '--font-instrument-serif',
 })
 
+const baseUrl = 'https://dikshant-portfolio-pied.vercel.app'
+
 export const metadata: Metadata = {
-  title: 'Dikshant Shahare — Software Developer',
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: 'Dikshant Shahare — Dikshant Portfolio | Software Developer',
+    template: '%s | Dikshant Shahare Portfolio',
+  },
   description:
-    'Portfolio of Dikshant Shahare, a software developer building real-world web, mobile, and AI-powered applications.',
+    'Official portfolio of Dikshant Shahare, a software developer building real-world web, mobile, and AI-powered applications.',
+  keywords: [
+    'Dikshant',
+    'Dikshant Shahare',
+    'Dikshant Portfolio',
+    'Dikshant Shahare Portfolio',
+    'Dikshant Developer',
+    'Software Developer Portfolio',
+    'Full-Stack Developer',
+    'React.js Developer',
+    'Java Developer',
+    'Spring Boot',
+    'dikshant2007',
+  ],
+  authors: [{ name: 'Dikshant Shahare', url: baseUrl }],
+  creator: 'Dikshant Shahare',
+  publisher: 'Dikshant Shahare',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: baseUrl,
+    siteName: 'Dikshant Shahare Portfolio',
+    title: 'Dikshant Shahare — Dikshant Portfolio | Software Developer',
+    description:
+      'Official portfolio of Dikshant Shahare, a software developer building real-world web, mobile, and AI-powered applications.',
+    images: [
+      {
+        url: '/dikshant-photo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Dikshant Shahare Portfolio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dikshant Shahare — Dikshant Portfolio',
+    description:
+      'Official portfolio of Dikshant Shahare, a software developer building real-world web, mobile, and AI-powered applications.',
+    images: ['/dikshant-photo.png'],
+  },
   icons: {
     icon: [
       {
@@ -53,6 +113,26 @@ export const viewport: Viewport = {
 
 const themeInit = `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}else{document.documentElement.classList.add('dark')}}catch(e){document.documentElement.classList.add('dark')}})();`
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Dikshant Shahare',
+  alternateName: ['Dikshant', 'Dikshant Portfolio'],
+  url: baseUrl,
+  image: `${baseUrl}/dikshant-photo.png`,
+  jobTitle: 'Software Developer',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'MBiG IT SERVICES PVT. LTD.',
+  },
+  sameAs: [
+    'https://github.com/dikshant2007',
+    'https://www.linkedin.com/in/dikshant-shahare-7b668a2a6/',
+  ],
+  description:
+    'Software Developer passionate about building real-world web, mobile, and AI-powered applications.',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -66,6 +146,10 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="font-sans antialiased">
         <div className="fixed inset-0 z-[-1] bg-grid-pattern pointer-events-none" />
